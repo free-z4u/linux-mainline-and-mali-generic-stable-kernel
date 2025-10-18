@@ -21,8 +21,8 @@ patch -p1 < /compile/doc/stable/misc.cbt/patches/fix-nyan-spi-kbd-v6.4.patch
 # revert the changes which break coming back properly after kernel blanking in v6.9+ - found via bisecting
 patch -p1 < /compile/doc/stable/misc.cbt/patches/fix-nyan-display-blanking-v6.9-01.patch
 patch -p1 < /compile/doc/stable/misc.cbt/patches/fix-nyan-display-blanking-v6.9-02.patch
-# silence some "INVALID property" log spam from the sbs battery driver
-patch -p1 < /compile/doc/stable/misc.cbt/patches/silence-sbs-battery-log-spam.patch
+# remove battery failed to report property log spam
+patch -p1 < /compile/doc/kernel-extra-patches/remove-battery-property-log-spam/v6.6.112.patch
 # fix kernel version number: + instead of -dirty at the end
 patch -p1 < /compile/doc/kernel-extra-patches/fix-kernel-version/v6.12.5.patch
 
