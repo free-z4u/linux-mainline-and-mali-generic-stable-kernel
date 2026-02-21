@@ -11,21 +11,21 @@
 
 cd /compile/source/linux-stable-cbg
 
-### git reset --hard HEAD
+git reset --hard HEAD
 
 # patches - taken from https://github.com/Maccraft123/Cadmium/tree/master/kernel/patches
 # this one does not apply anymore for v6.12 as the code seems to have been rewritten completely
 # lets keep it off for now
 #patch -p1 < /compile/doc/stable/misc.cbg/patches/cadmium-gru.0001-drm-bridge-analogix_dp-Don-t-return-EBUSY-when-msg-s.patch
-### patch -p1 < /compile/doc/stable/misc.cbg/patches/cadmium-gru.0002-drm-rockchip-Only-wait-for-panel-ACK-on-PSR-entry.patch
+patch -p1 < /compile/doc/stable/misc.cbg/patches/cadmium-gru.0002-drm-rockchip-Only-wait-for-panel-ACK-on-PSR-entry.patch
 # add gamma drm support for rk3399 - no longer needed for v6.1 as it is already included
 #patch -p1 < /compile/doc/stable/misc.cbg/patches/rk3399-add-drm-gamma-support.patch
 # remove battery failed to report property log spam
-### patch -p1 < /compile/doc/kernel-extra-patches/remove-battery-property-log-spam/v6.6.112.patch
+patch -p1 < /compile/doc/kernel-extra-patches/remove-battery-property-log-spam/v6.6.112.patch
 # remove panfrost purge log spam
-### patch -p1 < /compile/doc/kernel-extra-patches/remove-panfrost-purge-log-spam/v6.12.12.patch
+patch -p1 < /compile/doc/kernel-extra-patches/remove-panfrost-purge-log-spam/v6.12.12.patch
 # fix kernel version number: + instead of -dirty at the end
-### patch -p1 < /compile/doc/kernel-extra-patches/fix-kernel-version/v6.12.5.patch
+patch -p1 < /compile/doc/kernel-extra-patches/fix-kernel-version/v6.12.5.patch
 
 export ARCH=arm64
 scripts/kconfig/merge_config.sh -m arch/arm64/configs/defconfig /compile/doc/kernel-config-options/chromebooks-aarch64.cfg /compile/doc/kernel-config-options/docker-options.cfg /compile/doc/kernel-config-options/options-to-remove-generic.cfg /compile/doc/stable/misc.cbg/options/options-to-remove-special.cfg /compile/doc/kernel-config-options/additional-options-generic.cfg /compile/doc/kernel-config-options/additional-options-aarch64.cfg /compile/doc/stable/misc.cbg/options/additional-options-special.cfg
@@ -35,17 +35,17 @@ make CC="ccache gcc" -j 2 Image dtbs modules || exit
 cd tools/perf
 # this is to avoid compile errors
 export NO_JEVENTS=1
-### make CC="ccache gcc" || exit
+# make CC="ccache gcc" || exit
 cd ../power/cpupower
 make CC="ccache gcc" || exit
 cd ../../..
-export kver=`make CC="ccache gcc" kernelrelease`
+export kver=`make kernelrelease`
 echo ${kver}
 # remove debug info if there and not wanted
 #find . -type f -name '*.ko' | sudo xargs -n 1 objcopy --strip-unneeded
 sudo make CC="ccache gcc" modules_install || exit
 sudo mkdir -p /lib/modules/${kver}/tools
-sudo cp -v tools/perf/perf /lib/modules/${kver}/tools
+#sudo cp -v tools/perf/perf /lib/modules/${kver}/tools
 sudo cp -v tools/power/cpupower/cpupower /lib/modules/${kver}/tools
 sudo cp -v tools/power/cpupower/libcpupower.so.? /lib/modules/${kver}/tools
 # make headers_install INSTALL_HDR_PATH=/usr
