@@ -54,7 +54,7 @@ sudo cp -v arch/arm64/boot/Image /boot/Image-${kver}
 sudo mkdir -p /boot/dtb-${kver}
 sudo cp -v arch/arm64/boot/dts/rockchip/rk3399-gru-*.dtb /boot/dtb-${kver}
 sudo cp -v System.map /boot/System.map-${kver}
-sudo echo "console=tty1 rootwait ro fsck.fix=yes fsck.repair=yes net.ifnames=0 noresume apparmor=0 quiet splash" > ../cmdline
+echo "console=tty1 rootwait ro fsck.fix=yes fsck.repair=yes net.ifnames=0 noresume apparmor=0 quiet splash" > ../cmdline
 sudo mv ../cmdline /boot/cmdline-${kver}
 # start chromebook special - required: apt-get install liblz4-tool vboot-kernel-utils
 cp arch/arm64/boot/Image Image
