@@ -13,7 +13,7 @@ cd /compile/source/linux-stable-cbp
 
 # patches:
 # bring in patches from v6.11-rc7 of pmos exynos5 mainline tree
-patch -p1 < /compile/doc/stable/misc.cbp/patches/pmos-exynos-v6.12-rc6.patch
+patch -p1 < /compile/doc/stable/misc.cbp/patches/pmos-exynos-v6.12.62.patch
 # remove battery failed to report property log spam
 patch -p1 < /compile/doc/kernel-extra-patches/remove-battery-property-log-spam/v6.6.112.patch
 # remove panfrost purge log spam
