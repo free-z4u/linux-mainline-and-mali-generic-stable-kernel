@@ -17,12 +17,12 @@ patch -p1 < /compile/doc/stable/misc.cbt/patches/pmos-0002-ARM-dts-tegra-nyan-ad
 # fix audio jack detection - taken from pmos
 patch -p1 < /compile/doc/stable/misc.cbt/patches/pmos-0003-ARM-tegra-nyan-fix-mic-jack-detection-v6.6.patch
 # revert the changes which break spi and with it the keyboard on nyan in v6.2+ - found via bisecting
-patch -p1 < /compile/doc/stable/misc.cbt/patches/fix-nyan-spi-kbd-v6.4.patch
+patch -p1 < /compile/doc/stable/misc.cbt/patches/fix-nyan-spi-kbd-v6.12.92.patch
 # revert the changes which break coming back properly after kernel blanking in v6.9+ - found via bisecting
 patch -p1 < /compile/doc/stable/misc.cbt/patches/fix-nyan-display-blanking-v6.9-01.patch
 patch -p1 < /compile/doc/stable/misc.cbt/patches/fix-nyan-display-blanking-v6.9-02.patch
 # remove battery failed to report property log spam
-patch -p1 < /compile/doc/kernel-extra-patches/remove-battery-property-log-spam/v6.6.112.patch
+patch -p1 < /compile/doc/kernel-extra-patches/remove-battery-property-log-spam/v6.18.patch
 # fix kernel version number: + instead of -dirty at the end
 patch -p1 < /compile/doc/kernel-extra-patches/fix-kernel-version/v6.12.5.patch
 
@@ -65,7 +65,7 @@ cp -v vmlinux.kpart /boot/vmlinux.kpart-${kver}
 rm -f zImage cmdline bootloader.bin kernel.itb vmlinux.kpart
 # end chromebook special
 cd /boot
-update-initramfs -c -k ${kver}
+#update-initramfs -c -k ${kver}
 #mkimage -A arm -O linux -T ramdisk -a 0x0 -e 0x0 -n initrd.img-${kver} -d initrd.img-${kver} uInitrd-${kver}
 tar cvzf /compile/source/linux-stable-cbt/${kver}.tar.gz /boot/*-${kver} /lib/modules/${kver}
 cp -v /compile/doc/stable/config.cbt /compile/doc/stable/config.cbt.old

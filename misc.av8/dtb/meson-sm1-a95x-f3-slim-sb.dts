@@ -1,0 +1,24 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright (c) 2018 BayLibre SAS. All rights reserved.
+ */
+
+/dts-v1/;
+
+#include "meson-sm1-a95xf3-air.dts"
+
+/ {
+	compatible = "cyx,a95xf3-air", "amlogic,sm1";
+	model = "a95xf3slim-sb";
+
+};
+
+/* lower the max frequency for the sd card */
+&sd_emmc_b {
+	max-frequency = <25000000>;
+};
+
+/* disable access to emmc as one might brick the device by overwriting sensitive parts of it */
+&sd_emmc_c {
+	status = "disabled";
+};

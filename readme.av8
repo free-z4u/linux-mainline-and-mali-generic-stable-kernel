@@ -31,11 +31,11 @@ patch -p1 < /compile/doc/stable/misc.av8/patches/reduce-cma-mem-for-amlogic.patc
 # many s905w tv boxes have very low spec emmc chips so lower the freq for them
 patch -p1 < /compile/doc/stable/misc.av8/patches/lower-emmc-frequency-for-s905w.patch
 # add some extra but disabled opp entries for g12a, g12b and sm1
-patch -p1 < /compile/doc/stable/misc.av8/patches/additional-disabled-opp-entires-v5.8.patch
+patch -p1 < /compile/doc/stable/misc.av8/patches/additional-disabled-opp-entires-v6.18.patch
 # allow higher cpu temps
 patch -p1 < /compile/doc/stable/misc.av8/patches/gxl-higher-temps.patch
 # add new dtbs to Makefile
-patch -p1 < /compile/doc/stable/misc.av8/patches/add-new-dtbs-to-Makefile-v6.11.patch
+patch -p1 < /compile/doc/stable/misc.av8/patches/add-new-dtbs-to-Makefile-v6.18.patch
 # copy additional dtb files - maintained: sm1-h96max-x3, g12a-t95q and gxl-s905x-mi-box
 cp -i /compile/doc/stable/misc.av8/dtb/*.dts arch/arm64/boot/dts/amlogic
 # remove panfrost purge log spam
