@@ -36,7 +36,7 @@ make CC="ccache gcc" -j 2 Image dtbs modules || exit
 cd tools/perf
 # this is to avoid compile errors
 export NO_JEVENTS=1
-# make CC="ccache gcc" || exit
+make CC="ccache gcc" || exit
 cd ../power/cpupower
 make CC="ccache gcc" || exit
 cd ../../..
@@ -46,7 +46,7 @@ echo ${kver}
 #find . -type f -name '*.ko' | sudo xargs -n 1 objcopy --strip-unneeded
 sudo make CC="ccache gcc" modules_install || exit
 sudo mkdir -p /lib/modules/${kver}/tools
-#sudo cp -v tools/perf/perf /lib/modules/${kver}/tools
+sudo cp -v tools/perf/perf /lib/modules/${kver}/tools
 sudo cp -v tools/power/cpupower/cpupower /lib/modules/${kver}/tools
 sudo cp -v tools/power/cpupower/libcpupower.so.? /lib/modules/${kver}/tools
 # make headers_install INSTALL_HDR_PATH=/usr
@@ -68,7 +68,7 @@ sudo cp -v vmlinux.kpart /boot/vmlinux.kpart-${kver}
 rm -f Image Image.lz4 cmdline bootloader.bin kernel.itb vmlinux.kpart
 # end chromebook special
 cd /boot
-sudo update-initramfs -c -k ${kver}
+#update-initramfs -c -k ${kver}
 #mkimage -A arm64 -O linux -T ramdisk -a 0x0 -e 0x0 -n initrd.img-${kver} -d initrd.img-${kver} uInitrd-${kver}
 tar cvzf /compile/source/linux-stable-cbg/${kver}.tar.gz /boot/Image-${kver} /boot/System.map-${kver} /boot/config-${kver} /boot/cmdline-${kver} /boot/dtb-${kver} /boot/vmlinux.kpart-${kver} /lib/modules/${kver}
 cp -v /compile/doc/stable/config.cbg /compile/doc/stable/config.cbg.old
