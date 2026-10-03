@@ -36,7 +36,7 @@ make CC="ccache gcc" -j 2 Image dtbs modules || exit
 cd tools/perf
 # this is to avoid compile errors
 export NO_JEVENTS=1
-make CC="ccache gcc" || exit
+# make CC="ccache gcc" || exit
 cd ../power/cpupower
 make CC="ccache gcc" || exit
 cd ../../..
@@ -46,7 +46,7 @@ echo ${kver}
 #find . -type f -name '*.ko' | sudo xargs -n 1 objcopy --strip-unneeded
 sudo make CC="ccache gcc" modules_install || exit
 sudo mkdir -p /lib/modules/${kver}/tools
-sudo cp -v tools/perf/perf /lib/modules/${kver}/tools
+# sudo cp -v tools/perf/perf /lib/modules/${kver}/tools
 sudo cp -v tools/power/cpupower/cpupower /lib/modules/${kver}/tools
 sudo cp -v tools/power/cpupower/libcpupower.so.? /lib/modules/${kver}/tools
 # make headers_install INSTALL_HDR_PATH=/usr
